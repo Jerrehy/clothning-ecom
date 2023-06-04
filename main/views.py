@@ -18,8 +18,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.views import PasswordChangeView, LoginView, LogoutView
 
-from django.views.decorators.csrf import csrf_exempt
-
 
 # Home Page
 def home(request):
@@ -208,7 +206,7 @@ def update_cart_item(request):
                           'total_amt': total_amt})
     return JsonResponse({'data': t, 'totalitems': len(request.session['cartdata'])})
 
-@csrf_exempt
+
 # Signup Form
 def signup(request):
     if request.method == 'POST':
@@ -395,7 +393,7 @@ def update_address(request, id):
     form = AddressBookForm(instance=address)
     return render(request, 'user/update-address.html', {'form': form, 'msg': msg})
 
-@csrf_exempt
+
 class UserLoginView(SuccessMessageMixin, LoginView):
     form_class = UserLoginForm
     template_name = 'registration/login.html'
@@ -407,14 +405,14 @@ class UserLoginView(SuccessMessageMixin, LoginView):
         context['title'] = 'Авторизация на сайте'
         return context
 
-@csrf_exempt
+
 class UserLogoutView(LogoutView):
     """
     Выход с сайта
     """
     next_page = 'home'
 
-@csrf_exempt
+
 class UserPasswordChangeView(SuccessMessageMixin, PasswordChangeView):
     form_class = UserPasswordChangeForm
     template_name = 'user/user_password_change.html'
