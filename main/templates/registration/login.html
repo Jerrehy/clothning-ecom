@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<main class="container my-4">
+	<!-- Featured Products -->
+	<h3 class="my-4 border-bottom pb-1">Авторизация</h3>
+	<table class="table table-bordered">
+		<form method="post">
+			{% csrf_token %}
+			{{form.as_table}}
+			<tr>
+				<td colspan="2">
+					<input type="submit" value="Войти" class="btn btn-primary" />
+				</td>
+			</tr>
+		</form>
+	</table>
+	<p><a class="text-danger">Обратитесь в администрацию, если забыли пароль</a></p>
+	<p>Если вы ещё не зарегистрированы, то пройдите по форме <a href="{% url 'signup' %}">Регистрация</a>.</p>
+</main>
+{% endblock %}
