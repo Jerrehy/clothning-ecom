@@ -3,7 +3,7 @@
 {% block content %}
 <main class="container my-4">
 	<!-- Featured Products -->
-	<h3 class="my-4 border-bottom pb-1">Reviews Items</h3>
+	<h3 class="my-4 border-bottom pb-1">Отзывы на товары</h3>
 	<div class="row">
 		<div class="col-md-3">
 			{% include 'user/user-sidebar.html' %}
@@ -13,11 +13,11 @@
 				<table class="table-bordered table">
 					<thead>
 						<tr>
-							<th>Title</th>
-							<th>Image</th>
-							<th>Price</th>
-							<th>ReviewText</th>
-							<th>ReviewRating</th>
+							<th>Название</th>
+							<th>Картинка</th>
+							<th>Цена</th>
+							<th>Текст отзыва</th>
+							<th>Оставленная оценка</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -25,9 +25,9 @@
 						<tr>
 							<td><a href="/product/{{review.product.slug}}/{{review.product.id}}">{{review.product.title}}</a></td>
 							<td>
-								<img width="100" src="/media/{{review.product.productattribute_set.first.image}}" alt="{{review.product.title}}">
+								<img width="100" src="/media/{{review.product.image}}" alt="{{review.product.title}}">
 							</td>
-							<td>{{review.product.productattribute_set.first.price}}</td>
+							<td>{{review.product.price}}</td>
 							<td>{{review.review_text}}</td>
 							<td>{{review.review_rating}}</td>
 						</tr>
