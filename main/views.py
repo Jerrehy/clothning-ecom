@@ -96,12 +96,15 @@ def product_detail(request, slug, id):
     # End
 
     # Fetch avg rating for reviews
-    avg_reviews = ProductReview.objects.filter(product=product).aggregate(avg_rating=Avg('review_rating'))
+    if len(reviews) > 0:
+        avg_rating = ProductReview.objects.filter(product=product).aggregate(Sum('review_rating')) / len(reviews)
+    else:
+        avg_rating = 0
     # End
 
     return render(request, 'product_detail.html',
                   {'data': product, 'colors': colors, 'sizes': sizes,
-                   'reviewForm': reviewForm, 'canAdd': canAdd, 'reviews': reviews, 'avg_reviews': avg_reviews})
+                   'reviewForm': reviewForm, 'canAdd': canAdd, 'reviews': reviews, 'avg_reviews': avg_rating})
 
 
 # Search
@@ -292,10 +295,13 @@ def save_review(request, pid):
     }
 
     # Fetch avg rating for reviews
-    avg_reviews = ProductReview.objects.filter(product=product).aggregate(avg_rating=Avg('review_rating'))
+    if len(reviews) > 0:
+        avg_rating = ProductReview.objects.filter(product=product).aggregate(Sum('review_rating')) / len(reviews)
+    else:
+        avg_rating = 0
     # End
 
-    return JsonResponse({'bool': True, 'data': data, 'avg_reviews': avg_reviews})
+    return JsonResponse({'bool': True, 'data': data, 'avg_reviews': avg_rating})
 
 
 # User Dashboard

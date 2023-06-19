@@ -67,7 +67,7 @@
 		</div>
 		<!-- Reviews -->
 		<div class="col-md-6">
-			<h3 class="my-3">Отзывы - <span class="avg-rating">{{avg_reviews.avg_rating}}</span>/5 <i class="fa fa-star text-warning"></i>
+			<h3 class="my-3">Отзывы - <span class="avg-rating">{{avg_reviews}}</span>/5 <i class="fa fa-star text-warning"></i>
 				{% if user.is_authenticated %}
 				{% if canAdd %}
 				<button data-toggle="modal" data-target="#productReview" type="button" class="btn btn-warning btn-sm float-right reviewBtn">Добавить отзыв</button>
